@@ -1,9 +1,20 @@
 package com.mattech.task_list.models;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
+
+import com.mattech.task_list.TaskStatusConverter;
+
+@Entity(tableName = "tasks")
 public class Task {
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
-    private TaskStatus status;
+
+    @TypeConverters(TaskStatusConverter.class)
+    private TaskStatus status = TaskStatus.OPEN;
 
     public enum TaskStatus {
         OPEN,
@@ -11,10 +22,8 @@ public class Task {
         WORKING;
     }
 
-    public Task(int id, String name, TaskStatus status) {
-        this.id = id;
+    public Task(String name) {
         this.name = name;
-        this.status = status;
     }
 
     public int getId() {
