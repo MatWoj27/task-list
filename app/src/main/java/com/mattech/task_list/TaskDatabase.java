@@ -8,7 +8,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.mattech.task_list.models.Task;
-import com.mattech.task_list.models.TaskDao;
+import com.mattech.task_list.daos.TaskDao;
 
 import java.util.concurrent.Executors;
 

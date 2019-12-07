@@ -1,9 +1,12 @@
-package com.mattech.task_list.models;
+package com.mattech.task_list.daos;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
+
+import com.mattech.task_list.models.Task;
 
 import java.util.List;
 
@@ -15,4 +18,7 @@ public interface TaskDao {
 
     @Insert
     void insertTasks(Task... tasks);
+
+    @Update
+    void updateTask(Task task);
 }
