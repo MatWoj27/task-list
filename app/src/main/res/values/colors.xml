@@ -6,5 +6,4 @@
     <color name="colorStateTravelling">#A84FE0</color>
     <color name="colorStateWorking">#8D0BDE</color>
     <color name="colorStateOpened">#DEBDF2</color>
-    <color name="semiTransparentGray">#60D6D6D6</color>
 </resources>

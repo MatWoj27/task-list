@@ -55,6 +55,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 holder.taskStatus.setText(context.getResources().getString(R.string.open));
                 holder.itemView.setCardBackgroundColor(context.getResources().getColor(R.color.colorStateOpened, null));
                 holder.taskActionBtn.setText(context.getResources().getString(R.string.start_travel));
+                holder.taskActionBtn.setTextColor(context.getResources().getColor(R.color.colorStateOpened, null));
                 if (!allTasksOpened) {
                     holder.taskActionBtn.setVisibility(View.INVISIBLE);
                 }
@@ -63,11 +64,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 holder.taskStatus.setText(context.getResources().getString(R.string.travelling));
                 holder.itemView.setCardBackgroundColor(context.getResources().getColor(R.color.colorStateTravelling, null));
                 holder.taskActionBtn.setText(context.getResources().getString(R.string.start_work));
+                holder.taskActionBtn.setTextColor(context.getResources().getColor(R.color.colorStateTravelling, null));
                 break;
             case WORKING:
                 holder.taskStatus.setText(context.getResources().getString(R.string.working));
                 holder.itemView.setCardBackgroundColor(context.getResources().getColor(R.color.colorStateWorking, null));
                 holder.taskActionBtn.setText(context.getResources().getString(R.string.stop));
+                holder.taskActionBtn.setTextColor(context.getResources().getColor(R.color.colorStateWorking, null));
                 break;
             default:
                 throw new IllegalArgumentException("Could not recognize status");
