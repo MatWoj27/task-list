@@ -58,7 +58,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_margin="8dp"
-            android:background="@drawable/rounded_btn_background"
+            android:background="@drawable/rounded_btn_background_white"
             android:ellipsize="end"
             android:maxLines="1"
             android:maxWidth="120dp"

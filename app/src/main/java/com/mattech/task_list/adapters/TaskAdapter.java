@@ -1,6 +1,7 @@
 package com.mattech.task_list.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -49,13 +50,21 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         Task task = tasks.get(position);
         holder.taskId.setText(String.valueOf(task.getId()));
         holder.taskName.setText(task.getName());
+        holder.taskId.setTextColor(Color.WHITE);
+        holder.taskName.setTextColor(Color.WHITE);
+        holder.taskStatus.setTextColor(Color.WHITE);
+        holder.taskActionBtn.setBackground(context.getDrawable(R.drawable.rounded_btn_background_white));
         holder.taskActionBtn.setVisibility(View.VISIBLE);
         switch (task.getStatus()) {
             case OPEN:
                 holder.taskStatus.setText(context.getResources().getString(R.string.open));
-                holder.itemView.setCardBackgroundColor(context.getResources().getColor(R.color.colorStateOpened, null));
+                holder.itemView.setCardBackgroundColor(Color.WHITE);
+                holder.taskId.setTextColor(context.getResources().getColor(R.color.colorStateOpened, null));
+                holder.taskName.setTextColor(context.getResources().getColor(R.color.colorStateOpened, null));
+                holder.taskStatus.setTextColor(context.getResources().getColor(R.color.colorStateOpened, null));
+                holder.taskActionBtn.setBackground(context.getDrawable(R.drawable.rounded_btn_background_color));
                 holder.taskActionBtn.setText(context.getResources().getString(R.string.start_travel));
-                holder.taskActionBtn.setTextColor(context.getResources().getColor(R.color.colorStateOpened, null));
+                holder.taskActionBtn.setTextColor(Color.WHITE);
                 if (!allTasksOpened) {
                     holder.taskActionBtn.setVisibility(View.INVISIBLE);
                 }
