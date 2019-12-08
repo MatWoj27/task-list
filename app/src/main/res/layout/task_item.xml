@@ -27,6 +27,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
+                android:ellipsize="end"
+                android:maxEms="3"
+                android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <TextView
@@ -34,12 +37,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <TextView
                 android:id="@+id/task_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         </LinearLayout>
@@ -52,6 +59,9 @@
             android:layout_centerVertical="true"
             android:layout_margin="8dp"
             android:background="@drawable/rounded_btn_background"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxWidth="120dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:textColor="@android:color/white" />
