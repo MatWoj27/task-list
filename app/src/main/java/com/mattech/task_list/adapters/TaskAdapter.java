@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.mattech.task_list.R;
+import com.mattech.task_list.ViewAnimator;
 import com.mattech.task_list.models.Task;
 
 import java.util.ArrayList;
@@ -95,9 +96,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         if (payloads != null && payloads.size() > 0) {
             Task.TaskStatus changedTaskStatus = (Task.TaskStatus) payloads.get(0);
             if (changedTaskStatus == Task.TaskStatus.OPEN) {
-                holder.taskActionBtn.setVisibility(View.VISIBLE);
+                ViewAnimator.animateViewAppearance(holder.taskActionBtn);
             } else {
-                holder.taskActionBtn.setVisibility(View.INVISIBLE);
+                ViewAnimator.animateViewDisappearance(holder.taskActionBtn);
             }
         } else {
             onBindViewHolder(holder, position);
