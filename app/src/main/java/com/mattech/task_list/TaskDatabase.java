@@ -38,7 +38,7 @@ public abstract class TaskDatabase extends RoomDatabase {
             Executors.newSingleThreadScheduledExecutor().execute(() -> {
                 Task[] initialTasks = new Task[20];
                 for (int i = 0; i < 20; i++) {
-                    initialTasks[i] = new Task("Task " + (i + 1));
+                    initialTasks[i] = new Task("Task" + (i + 1));
                 }
                 database.getTaskDao().insertTasks(initialTasks);
             });
