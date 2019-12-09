@@ -138,12 +138,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             if (changePosition != -1) {
                 allTasksOpened = tasks.get(changePosition).getStatus() == Task.TaskStatus.OPEN;
                 this.tasks.set(changePosition, tasks.get(changePosition));
-                for (int i = 0; i < this.tasks.size(); i++) {
-                    if (i == changePosition) {
-                        notifyItemChanged(changePosition);
-                    } else {
-                        notifyItemChanged(i, this.tasks.get(changePosition).getStatus());
+                if (tasks.get(changePosition).getStatus() != Task.TaskStatus.WORKING) {
+                    for (int i = 0; i < this.tasks.size(); i++) {
+                        if (i == changePosition) {
+                            notifyItemChanged(changePosition);
+                        } else {
+                            notifyItemChanged(i, this.tasks.get(changePosition).getStatus());
+                        }
                     }
+                } else {
+                    notifyItemChanged(changePosition);
                 }
             }
         } else {
