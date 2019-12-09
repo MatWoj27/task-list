@@ -5,7 +5,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 
-import com.mattech.task_list.TaskStatusConverter;
+import com.mattech.task_list.type_converters.TaskStatusConverter;
 
 @Entity(tableName = "tasks")
 public class Task {

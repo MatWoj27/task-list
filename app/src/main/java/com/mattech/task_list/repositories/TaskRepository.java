@@ -1,10 +1,11 @@
-package com.mattech.task_list;
+package com.mattech.task_list.repositories;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import com.mattech.task_list.daos.TaskDao;
+import com.mattech.task_list.databases.TaskDatabase;
 import com.mattech.task_list.models.Task;
 
 import java.util.List;

@@ -1,10 +1,11 @@
-package com.mattech.task_list;
+package com.mattech.task_list.view_models;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
+import com.mattech.task_list.repositories.TaskRepository;
 import com.mattech.task_list.models.Task;
 
 import java.util.List;

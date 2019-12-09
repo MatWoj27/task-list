@@ -1,4 +1,4 @@
-package com.mattech.task_list;
+package com.mattech.task_list.databases;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;

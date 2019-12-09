@@ -1,4 +1,4 @@
-package com.mattech.task_list;
+package com.mattech.task_list.activities;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Rect;
@@ -8,8 +8,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.mattech.task_list.R;
 import com.mattech.task_list.adapters.TaskAdapter;
 import com.mattech.task_list.models.Task;
+import com.mattech.task_list.view_models.TaskViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,4 +1,4 @@
-package com.mattech.task_list;
+package com.mattech.task_list.type_converters;
 
 import android.arch.persistence.room.TypeConverter;
 

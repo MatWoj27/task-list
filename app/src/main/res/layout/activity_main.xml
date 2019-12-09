@@ -4,4 +4,4 @@
     android:id="@+id/recycler_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mattech.task_list.MainActivity" />
+    tools:context="com.mattech.task_list.activities.MainActivity" />
