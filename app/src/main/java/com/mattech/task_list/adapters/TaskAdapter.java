@@ -91,6 +91,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     @Override
+    public void onBindViewHolder(TaskViewHolder holder, int position, List<Object> payloads) {
+        if (payloads != null && payloads.size() > 0) {
+            Task.TaskStatus changedTaskStatus = (Task.TaskStatus) payloads.get(0);
+            if (changedTaskStatus == Task.TaskStatus.OPEN) {
+                holder.taskActionBtn.setVisibility(View.VISIBLE);
+            } else {
+                holder.taskActionBtn.setVisibility(View.INVISIBLE);
+            }
+        } else {
+            onBindViewHolder(holder, position);
+        }
+    }
+
+    @Override
     public int getItemCount() {
         return tasks.size();
     }
@@ -118,8 +132,32 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-        allTasksOpened = tasks.stream().noneMatch(task -> task.getStatus() != Task.TaskStatus.OPEN);
-        notifyDataSetChanged();
+        if (this.tasks.size() > 0) {
+            int changePosition = getDifferencePosition(this.tasks, tasks);
+            if (changePosition != -1) {
+                allTasksOpened = tasks.get(changePosition).getStatus() == Task.TaskStatus.OPEN;
+                this.tasks.set(changePosition, tasks.get(changePosition));
+                for (int i = 0; i < this.tasks.size(); i++) {
+                    if (i == changePosition) {
+                        notifyItemChanged(changePosition);
+                    } else {
+                        notifyItemChanged(i, this.tasks.get(changePosition).getStatus());
+                    }
+                }
+            }
+        } else {
+            this.tasks = tasks;
+            allTasksOpened = tasks.stream().noneMatch(task -> task.getStatus() != Task.TaskStatus.OPEN);
+            notifyDataSetChanged();
+        }
+    }
+
+    private int getDifferencePosition(List<Task> original, List<Task> changed) {
+        for (int i = 0; i < original.size() && i < changed.size(); i++) {
+            if (original.get(i).getStatus() != changed.get(i).getStatus()) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
