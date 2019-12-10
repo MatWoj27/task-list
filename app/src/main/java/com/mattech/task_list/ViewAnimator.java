@@ -16,6 +16,9 @@ public class ViewAnimator {
     }
 
     public static void animateViewAppearance(View view) {
+        view.setScaleX(0f);
+        view.setScaleY(0f);
+        view.setAlpha(0f);
         PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 1f);
         PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 1f);
         PropertyValuesHolder alpha = PropertyValuesHolder.ofFloat(View.ALPHA, 1f);
