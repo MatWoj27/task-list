@@ -86,8 +86,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 throw new IllegalArgumentException("Could not recognize status");
         }
         holder.taskActionBtn.setOnClickListener(v -> {
-            Task newTask = new Task(task.getId(), task.getName(), Task.nextStatus(task));
-            listener.taskStatusChanged(newTask);
+            taskClicked(task);
         });
     }
 
@@ -164,5 +163,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             }
         }
         return -1;
+    }
+
+    private synchronized void taskClicked(Task task) {
+        if (allTasksOpened || task.getStatus() != Task.TaskStatus.OPEN) {
+            allTasksOpened = false;
+            Task newTask = new Task(task.getId(), task.getName(), Task.nextStatus(task));
+            listener.taskStatusChanged(newTask);
+        }
     }
 }
