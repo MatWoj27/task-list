@@ -1,9 +1,8 @@
-package com.mattech.task_list;
+package com.mattech.task_list.utils;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.view.View;
-import android.widget.TextView;
 
 public class ViewAnimator {
 

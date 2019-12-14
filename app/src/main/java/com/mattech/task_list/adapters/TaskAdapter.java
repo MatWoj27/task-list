@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.mattech.task_list.R;
-import com.mattech.task_list.ViewAnimator;
+import com.mattech.task_list.utils.ViewAnimator;
 import com.mattech.task_list.models.Task;
 
 import java.util.ArrayList;
