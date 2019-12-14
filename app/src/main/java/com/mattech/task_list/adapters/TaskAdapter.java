@@ -55,7 +55,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.taskName.setTextColor(Color.WHITE);
         holder.taskStatus.setTextColor(Color.WHITE);
         holder.taskActionBtn.setBackground(context.getDrawable(R.drawable.rounded_btn_background_white));
-        holder.taskActionBtn.setVisibility(View.VISIBLE);
         switch (task.getStatus()) {
             case OPEN:
                 holder.taskStatus.setText(context.getResources().getString(R.string.open));
@@ -66,9 +65,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 holder.taskActionBtn.setBackground(context.getDrawable(R.drawable.rounded_btn_background_color));
                 holder.taskActionBtn.setText(context.getResources().getString(R.string.start_travel));
                 holder.taskActionBtn.setTextColor(Color.WHITE);
-                if (!allTasksOpened) {
-                    holder.taskActionBtn.setVisibility(View.INVISIBLE);
-                }
                 break;
             case TRAVELLING:
                 holder.taskStatus.setText(context.getResources().getString(R.string.travelling));
@@ -93,15 +89,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(TaskViewHolder holder, int position, List<Object> payloads) {
         if (payloads != null && payloads.size() > 0) {
-            Task.TaskStatus changedTaskStatus = (Task.TaskStatus) payloads.get(0);
-            if (changedTaskStatus == Task.TaskStatus.OPEN) {
+            int changedItemIndex = (int) payloads.get(0);
+            if (position == changedItemIndex) {
+                ViewAnimator.animateViewBounce(holder.taskActionBtn);
+            } else if (tasks.get(changedItemIndex).getStatus() == Task.TaskStatus.OPEN) {
                 ViewAnimator.animateViewAppearance(holder.taskActionBtn);
-            } else {
+            } else if (tasks.get(changedItemIndex).getStatus() == Task.TaskStatus.TRAVELLING) {
                 ViewAnimator.animateViewDisappearance(holder.taskActionBtn);
             }
         } else {
-            onBindViewHolder(holder, position);
+            if (tasks.get(position).getStatus() == Task.TaskStatus.OPEN && !allTasksOpened) {
+                holder.taskActionBtn.setVisibility(View.INVISIBLE);
+            } else {
+                holder.taskActionBtn.setVisibility(View.VISIBLE);
+            }
         }
+        onBindViewHolder(holder, position);
     }
 
     @Override
@@ -133,20 +136,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public void setTasks(List<Task> tasks) {
         if (this.tasks.size() > 0) {
-            int changePosition = getDifferencePosition(this.tasks, tasks);
-            if (changePosition != -1) {
-                allTasksOpened = tasks.get(changePosition).getStatus() == Task.TaskStatus.OPEN;
-                this.tasks.set(changePosition, tasks.get(changePosition));
-                if (tasks.get(changePosition).getStatus() != Task.TaskStatus.WORKING) {
-                    for (int i = 0; i < this.tasks.size(); i++) {
-                        if (i == changePosition) {
-                            notifyItemChanged(changePosition);
-                        } else {
-                            notifyItemChanged(i, this.tasks.get(changePosition).getStatus());
-                        }
-                    }
-                } else {
-                    notifyItemChanged(changePosition);
+            int changedItemIndex = getDifferencePosition(this.tasks, tasks);
+            if (changedItemIndex != -1) {
+                allTasksOpened = tasks.get(changedItemIndex).getStatus() == Task.TaskStatus.OPEN;
+                this.tasks.set(changedItemIndex, tasks.get(changedItemIndex));
+                for (int i = 0; i < this.tasks.size(); i++) {
+                    notifyItemChanged(i, changedItemIndex);
                 }
             }
         } else {
