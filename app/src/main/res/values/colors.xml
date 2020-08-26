@@ -6,4 +6,5 @@
     <color name="colorStateTravelling">#8952AB</color>
     <color name="colorStateWorking">@color/colorPrimary</color>
     <color name="colorStateOpened">#623380</color>
+    <color name="white">@android:color/white</color>
 </resources>
