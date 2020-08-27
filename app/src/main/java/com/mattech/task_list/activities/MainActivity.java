@@ -28,6 +28,10 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskA
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         viewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
+        presetMainList();
+    }
+
+    private void presetMainList() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
