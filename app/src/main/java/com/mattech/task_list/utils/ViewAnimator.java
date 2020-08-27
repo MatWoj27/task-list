@@ -2,6 +2,7 @@ package com.mattech.task_list.utils;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 public class ViewAnimator {
@@ -13,7 +14,7 @@ public class ViewAnimator {
         ObjectAnimator.ofPropertyValuesHolder(view, scaleX, scaleY, alpha).setDuration(400).start();
     }
 
-    public static void animateViewAppearance(View view) {
+    public static void animateViewAppearance(@NonNull View view) {
         view.setScaleX(0f);
         view.setScaleY(0f);
         view.setAlpha(0f);
@@ -25,7 +26,7 @@ public class ViewAnimator {
         view.setClickable(true);
     }
 
-    public static void animateViewDisappearance(View view) {
+    public static void animateViewDisappearance(@NonNull View view) {
         view.setClickable(false);
         PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0f);
         PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0f);
