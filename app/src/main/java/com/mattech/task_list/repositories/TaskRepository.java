@@ -3,6 +3,7 @@ package com.mattech.task_list.repositories;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 
 import com.mattech.task_list.daos.TaskDao;
 import com.mattech.task_list.databases.TaskDatabase;
@@ -31,7 +32,7 @@ public class TaskRepository {
     private static class UpdateTask extends AsyncTask<Task, Void, Void> {
         TaskDao dao;
 
-        UpdateTask(TaskDao dao) {
+        UpdateTask(@NonNull TaskDao dao) {
             this.dao = dao;
         }
 
