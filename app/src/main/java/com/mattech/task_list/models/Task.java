@@ -4,6 +4,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
+import android.support.annotation.NonNull;
 
 import com.mattech.task_list.type_converters.TaskStatusConverter;
 
@@ -58,7 +59,7 @@ public class Task {
         this.status = status;
     }
 
-    public static TaskStatus nextStatus(Task task) {
+    public static TaskStatus nextStatus(@NonNull Task task) {
         switch (task.getStatus()) {
             case OPEN:
                 return TaskStatus.TRAVELLING;
