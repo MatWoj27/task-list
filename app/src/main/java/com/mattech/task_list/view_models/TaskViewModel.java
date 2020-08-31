@@ -27,4 +27,10 @@ public class TaskViewModel extends AndroidViewModel {
     public void update(Task task) {
         taskRepository.updateTask(task);
     }
+
+    public void deleteTask(int adapterPosition) {
+        if (tasks.getValue() != null) {
+            taskRepository.deleteTask(tasks.getValue().get(adapterPosition));
+        }
+    }
 }

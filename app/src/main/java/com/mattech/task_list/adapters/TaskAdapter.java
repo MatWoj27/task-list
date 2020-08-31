@@ -135,7 +135,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     public void setTasks(List<Task> tasks) {
-        if (this.tasks.size() > 0) {
+        if (this.tasks.size() == 0) {
+            this.tasks = tasks;
+            allTasksOpened = tasks.stream().noneMatch(task -> task.getStatus() != Task.TaskStatus.OPEN);
+            notifyDataSetChanged();
+        } else if (tasks.size() < this.tasks.size()) {
+            int removedItemIndex = Task.getRemovedItem(this.tasks, tasks);
+            if (removedItemIndex != -1) {
+                allTasksOpened = allTasksOpened || this.tasks.get(removedItemIndex).getStatus() != Task.TaskStatus.OPEN;
+                this.tasks.remove(removedItemIndex);
+                notifyItemRemoved(removedItemIndex);
+            }
+        } else {
             int changedItemIndex = getDifferencePosition(this.tasks, tasks);
             if (changedItemIndex != -1) {
                 allTasksOpened = tasks.get(changedItemIndex).getStatus() == Task.TaskStatus.OPEN;
@@ -144,10 +155,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                     notifyItemChanged(i, changedItemIndex);
                 }
             }
-        } else {
-            this.tasks = tasks;
-            allTasksOpened = tasks.stream().noneMatch(task -> task.getStatus() != Task.TaskStatus.OPEN);
-            notifyDataSetChanged();
         }
     }
 

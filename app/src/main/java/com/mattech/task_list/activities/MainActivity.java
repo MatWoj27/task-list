@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.mattech.task_list.R;
@@ -43,6 +44,17 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskA
                 outRect.bottom = position == itemCount - 1 ? 16 : 0;
             }
         });
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                viewModel.deleteTask(viewHolder.getAdapterPosition());
+            }
+        }).attachToRecyclerView(recyclerView);
         TaskAdapter taskAdapter = new TaskAdapter(this);
         recyclerView.setAdapter(taskAdapter);
         viewModel.getTasks().observe(this, taskAdapter::setTasks);

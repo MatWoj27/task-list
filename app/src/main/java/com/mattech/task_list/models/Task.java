@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 
 import com.mattech.task_list.type_converters.TaskStatusConverter;
 
+import java.util.List;
+
 @Entity(tableName = "tasks")
 public class Task {
 
@@ -70,5 +72,14 @@ public class Task {
             default:
                 throw new IllegalArgumentException("Could not recognize status");
         }
+    }
+
+    public static int getRemovedItem(@NonNull List<Task> original, List<Task> changed) {
+        for (int i = 0; i < original.size() && i < changed.size(); i++) {
+            if (original.get(i).getId() != changed.get(i).getId()) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
