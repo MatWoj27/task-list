@@ -24,6 +24,15 @@ public class TaskViewModel extends AndroidViewModel {
         return tasks;
     }
 
+    public void insertTask() {
+        List<Task> tasks = this.tasks.getValue();
+        if (tasks != null) {
+            int taskNum = tasks.size() > 0 ? tasks.get(tasks.size() - 1).getId() + 1 : 1;
+            Task task = new Task("Task" + taskNum);
+            taskRepository.insertTask(task);
+        }
+    }
+
     public void update(Task task) {
         taskRepository.updateTask(task);
     }

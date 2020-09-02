@@ -146,6 +146,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 this.tasks.remove(removedItemIndex);
                 notifyItemRemoved(removedItemIndex);
             }
+        } else if (tasks.size() > this.tasks.size()) {
+            this.tasks.add(tasks.get(tasks.size() - 1));
+            notifyItemInserted(this.tasks.size() - 1);
         } else {
             int changedItemIndex = getDifferencePosition(this.tasks, tasks);
             if (changedItemIndex != -1) {
