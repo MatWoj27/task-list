@@ -74,12 +74,12 @@ public class Task {
         }
     }
 
-    public static int getRemovedItem(@NonNull List<Task> original, List<Task> changed) {
+    public static int getRemovedItemIndex(@NonNull List<Task> original, List<Task> changed) {
         for (int i = 0; i < original.size() && i < changed.size(); i++) {
             if (original.get(i).getId() != changed.get(i).getId()) {
                 return i;
             }
         }
-        return -1;
+        return original.size() - 1;
     }
 }
