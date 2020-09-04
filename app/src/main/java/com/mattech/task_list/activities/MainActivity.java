@@ -1,6 +1,7 @@
 package com.mattech.task_list.activities;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.mattech.task_list.R;
 import com.mattech.task_list.adapters.TaskAdapter;
+import com.mattech.task_list.databinding.ActivityMainBinding;
 import com.mattech.task_list.models.Task;
 import com.mattech.task_list.view_models.TaskViewModel;
 
@@ -30,9 +32,11 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         ButterKnife.bind(this);
         viewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
+        binding.setViewModel(viewModel);
+        binding.setLifecycleOwner(this);
         presetMainList();
         addTaskBtn.setOnClickListener(view -> viewModel.insertTask());
     }
