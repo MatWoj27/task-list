@@ -23,6 +23,18 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskActionListener {
     private TaskViewModel viewModel;
 
+    private ItemTouchHelper mainListItemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            viewModel.deleteTask(viewHolder.getAdapterPosition());
+        }
+    });
+
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
@@ -53,17 +65,7 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskA
                 outRect.bottom = position == itemCount - 1 ? 16 : 0;
             }
         });
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                viewModel.deleteTask(viewHolder.getAdapterPosition());
-            }
-        }).attachToRecyclerView(recyclerView);
+        mainListItemTouchHelper.attachToRecyclerView(recyclerView);
         TaskAdapter taskAdapter = new TaskAdapter(this);
         recyclerView.setAdapter(taskAdapter);
         viewModel.getTasks().observe(this, taskAdapter::setTasks);
