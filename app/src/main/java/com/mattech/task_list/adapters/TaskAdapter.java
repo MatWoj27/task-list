@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.mattech.task_list.R;
+import com.mattech.task_list.databinding.TaskItemBinding;
 import com.mattech.task_list.utils.ViewAnimator;
 import com.mattech.task_list.models.Task;
 
@@ -44,15 +45,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     @Override
     public TaskViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_item, parent, false);
-        return new TaskViewHolder(itemView);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        TaskItemBinding binding = TaskItemBinding.inflate(inflater, parent, false);
+        return new TaskViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(TaskViewHolder holder, int position) {
         Task task = tasks.get(position);
-        holder.taskId.setText(String.valueOf(task.getId()));
-        holder.taskName.setText(task.getName());
+        holder.bind(task);
         holder.taskId.setTextColor(Color.WHITE);
         holder.taskName.setTextColor(Color.WHITE);
         holder.taskStatus.setTextColor(Color.WHITE);
@@ -120,10 +121,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         CardView itemView;
 
-        TaskViewHolder(View itemView) {
-            super(itemView);
-            this.itemView = (CardView) itemView;
+        private TaskItemBinding binding;
+
+        TaskViewHolder(TaskItemBinding binding) {
+            super(binding.getRoot());
+            this.itemView = (CardView) binding.getRoot();
             ButterKnife.bind(this, itemView);
+            this.binding = binding;
         }
 
         void changeState(@StringRes int taskStatusId, @ColorRes int itemBackgroundColorId, @StringRes int buttonTextId, @ColorRes int buttonTextColorId) {
@@ -131,6 +135,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             itemView.setCardBackgroundColor(context.getResources().getColor(itemBackgroundColorId, null));
             taskActionBtn.setText(context.getString(buttonTextId));
             taskActionBtn.setTextColor(context.getResources().getColor(buttonTextColorId, null));
+        }
+
+        void bind(Task task) {
+            binding.setTask(task);
+            binding.executePendingBindings();
         }
     }
 
