@@ -1,7 +1,6 @@
 package com.mattech.task_list.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -55,16 +54,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = tasks.get(position);
         holder.bind(task);
-        holder.taskId.setTextColor(Color.WHITE);
-        holder.taskName.setTextColor(Color.WHITE);
-        holder.taskStatus.setTextColor(Color.WHITE);
         holder.taskActionBtn.setBackground(context.getDrawable(R.drawable.rounded_btn_background_white));
         switch (task.getStatus()) {
             case OPEN:
                 holder.changeState(R.string.open, R.color.white, R.string.start_travel, R.color.white);
-                holder.taskId.setTextColor(context.getResources().getColor(R.color.colorStateOpened, null));
-                holder.taskName.setTextColor(context.getResources().getColor(R.color.colorStateOpened, null));
-                holder.taskStatus.setTextColor(context.getResources().getColor(R.color.colorStateOpened, null));
                 holder.taskActionBtn.setBackground(context.getDrawable(R.drawable.rounded_btn_background_color));
                 break;
             case TRAVELLING:

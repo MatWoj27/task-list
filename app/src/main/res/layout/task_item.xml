@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
+        <import type="com.mattech.task_list.models.Task.TaskStatus"/>
         <variable
             name="task"
             type="com.mattech.task_list.models.Task" />
@@ -36,7 +37,8 @@
                     android:maxEms="3"
                     android:maxLines="1"
                     android:text="@{String.valueOf(task.id)}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@{task.status == TaskStatus.OPEN ? @color/colorStateOpened : @android:color/white}"/>
 
                 <TextView
                     android:id="@+id/task_name"
@@ -46,7 +48,8 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@{task.name}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@{task.status == TaskStatus.OPEN ? @color/colorStateOpened : @android:color/white}"/>
 
                 <TextView
                     android:id="@+id/task_status"
@@ -54,7 +57,8 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@{task.status == TaskStatus.OPEN ? @color/colorStateOpened : @android:color/white}"/>
 
             </LinearLayout>
 
