@@ -117,7 +117,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         private TaskItemBinding binding;
 
-        TaskViewHolder(TaskItemBinding binding) {
+        TaskViewHolder(@NonNull TaskItemBinding binding) {
             super(binding.getRoot());
             this.itemView = (CardView) binding.getRoot();
             ButterKnife.bind(this, itemView);
