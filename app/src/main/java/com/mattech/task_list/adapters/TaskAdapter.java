@@ -151,7 +151,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             this.tasks.add(tasks.get(tasks.size() - 1));
             notifyItemInserted(this.tasks.size() - 1);
         } else {
-            int changedItemIndex = getDifferencePosition(this.tasks, tasks);
+            int changedItemIndex = Task.getChangedItemIndex(this.tasks, tasks);
             if (changedItemIndex != -1) {
                 allTasksOpened = tasks.get(changedItemIndex).getStatus() == Task.TaskStatus.OPEN;
                 this.tasks.set(changedItemIndex, tasks.get(changedItemIndex));
@@ -160,15 +160,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 }
             }
         }
-    }
-
-    private int getDifferencePosition(List<Task> original, List<Task> changed) {
-        for (int i = 0; i < original.size() && i < changed.size(); i++) {
-            if (original.get(i).getStatus() != changed.get(i).getStatus()) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     private synchronized void taskClicked(Task task) {

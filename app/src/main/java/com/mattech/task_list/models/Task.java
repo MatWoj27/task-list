@@ -82,4 +82,13 @@ public class Task {
         }
         return original.size() - 1;
     }
+
+    public static int getChangedItemIndex(@NonNull List<Task> original, List<Task> changed) {
+        for (int i = 0; i < original.size() && i < changed.size(); i++) {
+            if (original.get(i).getStatus() != changed.get(i).getStatus()) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
