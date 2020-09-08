@@ -85,12 +85,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             } else if (tasks.get(changedItemIndex).getStatus() == Task.TaskStatus.TRAVELLING) {
                 ViewAnimator.animateViewDisappearance(holder.taskActionBtn);
             }
+        } else if (tasks.get(position).getStatus() == Task.TaskStatus.OPEN && !allTasksOpened) {
+            holder.taskActionBtn.setVisibility(View.INVISIBLE);
         } else {
-            if (tasks.get(position).getStatus() == Task.TaskStatus.OPEN && !allTasksOpened) {
-                holder.taskActionBtn.setVisibility(View.INVISIBLE);
-            } else {
-                holder.taskActionBtn.setVisibility(View.VISIBLE);
-            }
+            holder.taskActionBtn.setVisibility(View.VISIBLE);
         }
         onBindViewHolder(holder, position);
     }
