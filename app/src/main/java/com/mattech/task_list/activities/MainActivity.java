@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.ImageButton;
 
 import com.mattech.task_list.R;
 import com.mattech.task_list.adapters.TaskAdapter;
@@ -38,9 +37,6 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskA
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
-    @BindView(R.id.add_btn)
-    ImageButton addTaskBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskA
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
         presetMainList();
-        addTaskBtn.setOnClickListener(view -> viewModel.insertTask());
     }
 
     private void presetMainList() {
