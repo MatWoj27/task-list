@@ -6,4 +6,5 @@
     <string name="travelling">Travelling</string>
     <string name="working">Working</string>
     <string name="open">Open</string>
+    <string name="add_task_fab_description">Add a new task</string>
 </resources>

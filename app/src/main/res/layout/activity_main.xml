@@ -62,6 +62,7 @@
                 android:layout_marginBottom="40dp"
                 android:layout_gravity="bottom|right"
                 android:background="@drawable/oval_btn_background"
+                android:contentDescription="@string/add_task_fab_description"
                 android:elevation="8dp"
                 android:src="@drawable/add_icon"
                 android:onClick="@{v -> viewModel.insertTask()}"/>
