@@ -42,7 +42,7 @@ public class TaskRepository {
     private static class InsertTask extends AsyncTask<Task, Void, Void> {
         TaskDao dao;
 
-        public InsertTask(@NonNull TaskDao dao) {
+        InsertTask(@NonNull TaskDao dao) {
             this.dao = dao;
         }
 
