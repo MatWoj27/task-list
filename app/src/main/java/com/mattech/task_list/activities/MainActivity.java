@@ -55,9 +55,8 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.TaskA
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 int position = parent.getChildViewHolder(view).getAdapterPosition();
-                int itemCount = state.getItemCount();
-                outRect.top = 16;
-                outRect.bottom = position == itemCount - 1 ? 16 : 0;
+                outRect.top = position == 0 ? 16 : 0;
+                outRect.bottom = 16;
             }
         });
         mainListItemTouchHelper.attachToRecyclerView(recyclerView);
