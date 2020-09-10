@@ -18,6 +18,7 @@ public abstract class TaskDatabase extends RoomDatabase {
 
     public abstract TaskDao getTaskDao();
 
+    @NonNull
     public static TaskDatabase getInstance(final Context context) {
         if (database == null) {
             synchronized (TaskDatabase.class) {
