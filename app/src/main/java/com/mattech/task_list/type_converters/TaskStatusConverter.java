@@ -14,15 +14,6 @@ public class TaskStatusConverter {
 
     @TypeConverter
     public static Task.TaskStatus stringToStatus(String name) {
-        switch (Task.TaskStatus.valueOf(name)) {
-            case OPEN:
-                return Task.TaskStatus.OPEN;
-            case TRAVELLING:
-                return Task.TaskStatus.TRAVELLING;
-            case WORKING:
-                return Task.TaskStatus.WORKING;
-            default:
-                throw new IllegalArgumentException("Could not recognize status");
-        }
+        return Task.TaskStatus.valueOf(name);
     }
 }
